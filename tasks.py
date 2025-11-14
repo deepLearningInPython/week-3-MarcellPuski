@@ -37,13 +37,26 @@ print(compute_output_size_1d(input_array, kernel_array))
 def convolve_1d(input_array, kernel_array):
     # Tip: start by initializing an empty output array (you can use your function above to calculate the correct size).
     # Then fill the cells in the array with a loop.
-    pass
+    output_size = compute_output_size_1d(input_array, kernel_array)
+    output = np.empty(output_size)
+
+    kernel_len = len(kernel_array)
+
+    for i in range(output_size):
+        output[i] = np.sum(input_array[i : i + kernel_len] * kernel_array)
+
+    return output
+
 
 # -----------------------------------------------
 # Another tip: write test cases like this, so you can easily test your function.
 input_array = np.array([1, 2, 3, 4, 5])
 kernel_array = np.array([1, 0, -1])
 print(convolve_1d(input_array, kernel_array))
+
+input_array_2 = np.array([1,2,1,3,5,6])
+kernel_array_2 = np.array([2,4])
+print(convolve_1d(input_array_2, kernel_array_2))
 
 # Task 3: Compute Output Size for 2D Convolution
 # Instructions:
