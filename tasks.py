@@ -65,13 +65,32 @@ print(convolve_1d(input_array_2, kernel_array_2))
 # The dimensions of the output (assuming no padding and a stride of one) can be computed as follows:
 # (input_height - kernel_height + 1, input_width - kernel_width + 1)
 
+two_dim = np.matrix([[1,2,3],
+                     [4,4,5]])
+
+a = np.shape(two_dim)
+print(a[0])
+
+
 # Your code here:
 # -----------------------------------------------
 
 def compute_output_size_2d(input_matrix, kernel_matrix):
-    pass
+    shape_input = np.shape(input_matrix)
+    shape_kernel = np.shape(kernel_matrix)
+    input_height = shape_input[0]
+    input_width = shape_input[1]
+    kernel_height = shape_kernel[0]
+    kernel_width = shape_kernel[1]
+
+    return input_height - kernel_height + 1, input_width - kernel_width + 1
 
 
+# test
+example_input = np.matrix([[1, 2, 3],[4, 5, 6],[7, 8, 9]])
+example_kernel = np.matrix([[1, 0],[0, 1]])
+
+print(compute_output_size_2d(example_input, example_kernel))
 # -----------------------------------------------
 
 
