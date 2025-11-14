@@ -1,5 +1,6 @@
 import numpy as np
 
+
 # Follow the tasks below to practice basic Python concepts.
 # Write your code in between the dashed lines.
 # Don't import additional packages. Numpy suffices.
