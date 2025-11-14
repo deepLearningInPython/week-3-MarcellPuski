@@ -91,8 +91,10 @@ example_input = np.matrix([[1, 2, 3],[4, 5, 6],[7, 8, 9]])
 example_kernel = np.matrix([[1, 0],[0, 1]])
 
 print(compute_output_size_2d(example_input, example_kernel))
-# -----------------------------------------------
 
+# -----------------------------------------------
+lajos = compute_output_size_2d(example_input, example_kernel)
+print(lajos[0])
 
 # Task 4: 2D Convolution
 # Instructions:
@@ -104,7 +106,27 @@ print(compute_output_size_2d(example_input, example_kernel))
 def convolute_2d(input_matrix, kernel_matrix):
     # Tip: same tips as above, but you might need a nested loop here in order to
     # define which parts of the input matrix need to be multiplied with the kernel matrix.
-    pass
+    output_shape = compute_output_size_2d(input_matrix, kernel_matrix)
+    output_hight = output_shape[0]
+    output_width = output_shape[1]
+    
+    output = np.empty((output_hight, output_width))
 
+    kernel_shape = np.shape(kernel_matrix)
+    kernel_height = kernel_shape[0]
+    kernel_width = kernel_shape[1]
+    
+
+    for i in range(output_hight):
+        for j in range(output_width):
+            output[i, j] = np.sum(input_matrix[i : i + kernel_height, j : j + kernel_width] * kernel_matrix)
+
+    return output
+
+# checking:
+test_input_matrix = np.matrix([[1, 2, 3],[4, 5, 6],[7, 8, 9]])
+test_kernel_matrix = np.matrix([[1, 0],[0, 1]])
+
+print(convolute_2d(test_input_matrix, test_kernel_matrix))
 
 # -----------------------------------------------
